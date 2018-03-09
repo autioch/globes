@@ -4,6 +4,6 @@ import './styles.scss';
 
 export default ({ options }) => (
   <div className="qb-options">
-    {options.map((option) => <Button key={option.id} option={option} />)}
+    {Object.keys(options).map((id) => <Button key={id} option={options[id]} />)}
   </div>
 );

@@ -3,6 +3,6 @@ import Field from './field';
 
 export default ({ stats }) => (
   <div className="qb-stats">
-    {stats.map((field) => <Field key={field.id} field={field} />)}
+    {Object.keys(stats).map((id) => <Field key={id} field={stats[id]} />)}
   </div>
 );

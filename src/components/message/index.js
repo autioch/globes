@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './styles.scss';
+import './styles.css';
 
 export default ({ message: { title, content, follow, onClick } }) => (
   <div className="qb-message" onClick={onClick}>

@@ -1,4 +1,11 @@
+.qb-targets {
+  background-color: #f8f8f8;
+  position: relative;
+  overflow: hidden;
+}
+
 .qb-target {
   border-radius: 50%;
   box-shadow: 1px 1px 1px #aaa;
+  position: absolute;
 }

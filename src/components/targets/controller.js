@@ -2,7 +2,7 @@
 /* eslint-disable no-magic-numbers */
 /* eslint-disable no-plusplus */
 let nextId = 1;
-const SPEED = 0.1;
+const SPEED = 0.01;
 
 function randomColor() {
   return {
@@ -27,7 +27,7 @@ function randomPosition({ width, height }, size) {
 }
 
 function randomSize() {
-  return Math.floor(Math.random() * 100) + 10;
+  return Math.floor(Math.random() * 100) + 50;
 }
 
 function lerp(fromColor, toColor, amount) {
@@ -59,7 +59,7 @@ export default class TargetsController {
 
   add(dimensions) {
     const size = randomSize();
-    const duration = Math.floor((Math.random() * 5000) + 1000);
+    const duration = Math.floor((Math.random() * 3000) + 1000);
     const color = randomColor();
     const position = randomPosition(dimensions, size);
 
@@ -88,7 +88,7 @@ export default class TargetsController {
 
       if (target.timedOut) {
         target.color = clone(TIMED_OUT);
-        target.position.currentY = target.position.y + (SPEED * -target.remaining);
+        target.position.currentY = target.position.y + (SPEED * -target.remaining * target.size);
         if ((target.position.currentY - target.size) >= dimensions.height) {
           target.dead = true;
         }

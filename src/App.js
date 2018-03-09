@@ -10,10 +10,10 @@ export default class App extends Component {
   state = {
     pause: false,
     message: undefined,
-    options: [],
+    options: {},
     records: undefined,
     recordsHeaders: undefined,
-    stats: [],
+    stats: {},
     targets: [],
     targetAddInterval: 1500,
     dimensions: {
@@ -102,7 +102,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { paused, message, options, records, recordsHeaders, stats, targets } = this.state;
+    const { dimensions, paused, message, options, records, recordsHeaders, stats, targets } = this.state;
 
     return (
       <Game
@@ -111,7 +111,7 @@ export default class App extends Component {
         options={options}
         records={records} recordsHeaders={recordsHeaders} recordsClose={this.gamePrepare}
         stats={stats}
-        targets={targets} targetHit={this.targetHit}
+        targets={targets} targetHit={this.targetHit} dimensions={dimensions}
       />
     );
   }
