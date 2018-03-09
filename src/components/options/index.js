@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from './button';
+import Option from './option';
 import './styles.scss';
 
 export default ({ options }) => (
   <div className="qb-options">
-    {Object.keys(options).map((id) => <Button key={id} option={options[id]} />)}
+    {Object.keys(options).sort().map((id) => <Option key={id} option={options[id]} />)}
   </div>
 );

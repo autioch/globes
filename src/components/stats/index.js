@@ -1,8 +1,8 @@
 import React from 'react';
-import Field from './field';
+import Stat from './stat';
 
 export default ({ stats }) => (
   <div className="qb-stats">
-    {Object.keys(stats).map((id) => <Field key={id} field={stats[id]} />)}
+    {Object.keys(stats).sort().map((id) => <Stat key={id} stat={stats[id]} />)}
   </div>
 );

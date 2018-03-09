@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 export default ({ option: { checked, disabled, onClick, title, icon } }) => {
   const classes = classnames({
-    'qb-option-button': true,
+    'qb-option': true,
     'is-checked': checked,
     'is-disabled': disabled
   });

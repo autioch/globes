@@ -1,10 +1,16 @@
 /* eslint-disable no-console */
+/* eslint-disable no-plusplus */
 /* eslint-disable no-undefined */
 /* eslint-disable no-magic-numbers */
 import React, { Component } from 'react';
 import { Game, RecordsController, TargetsController } from './components';
 import autobind from 'autobind-decorator';
 import './App.css';
+import statsConfig from './components/stats/config';
+
+const clone = (obj) => JSON.parse(JSON.stringify(obj));
+
+const DEFAULT_LIFE = 5;
 
 export default class App extends Component {
   state = {
@@ -13,7 +19,7 @@ export default class App extends Component {
     options: {},
     records: undefined,
     recordsHeaders: undefined,
-    stats: {},
+    stats: clone(statsConfig),
     targets: [],
     targetAddInterval: 1500,
     dimensions: {
@@ -27,6 +33,7 @@ export default class App extends Component {
     super(props);
     this.recordsController = new RecordsController({});
     this.targetsController = new TargetsController({});
+    this.recordsController.reset();
   }
 
   componentDidMount() {
@@ -48,11 +55,16 @@ export default class App extends Component {
 
   @autobind
   gameStart() {
+    const newStats = clone(statsConfig);
+
+    newStats.life.value = DEFAULT_LIFE;
+
     this.setState({
-      message: undefined
+      message: undefined,
+      stats: newStats
     });
-    this.gameLoop();
-    this.targetAdd();
+    this.gameLoopTimeout = setTimeout(this.gameLoop, 10);
+    setTimeout(this.targetAdd, 10);
   }
 
   @autobind
@@ -63,20 +75,32 @@ export default class App extends Component {
 
     this.targetsController.age(timeDiff, dimensions);
 
+    const deadCount = targets.filter((entity) => !!entity.dead).length;
+    const life = this.state.stats.life.value - deadCount;
+
     this.setState({
       lastRun: runTime,
-      targets: targets.filter((entity) => !entity.dead)
+      targets: targets.filter((entity) => !entity.dead),
+      stats: {
+        life: {
+          value: life,
+          ...this.state.stats.life
+        },
+        ...this.state.stats
+      }
     });
-    this.gameLoopRaf = requestAnimationFrame(this.gameLoop);
+    if (life < 1) {
+      this.gameOver();
+    } else {
+      this.gameLoopTimeout = setTimeout(this.gameLoop, 10);
+    }
   }
 
   @autobind
   gameOver() {
     clearTimeout(this.targetAddTimeout);
-    cancelAnimationFrame(this.gameLoopRaf);
-    this.recordsController.add({
-      points: 10
-    });
+    clearTimeout(this.gameLoopTimeout);
+    this.recordsController.add([10]);
     this.setState({
       paused: true,
       records: this.recordsController.records,
@@ -88,7 +112,14 @@ export default class App extends Component {
   targetAdd() {
     this.targetsController.add(this.state.dimensions);
     this.setState({
-      targets: this.targetsController.targets.slice()
+      targets: this.targetsController.targets.slice(),
+      stats: {
+        active: {
+          value: this.targetsController.targets.length,
+          ...this.state.stats.active
+        },
+        ...this.state.stats
+      }
     });
     this.targetAddTimeout = setTimeout(this.targetAdd, this.state.targetAddInterval);
   }
@@ -97,7 +128,18 @@ export default class App extends Component {
   targetHit(id) {
     this.targetsController.hit(id);
     this.setState({
-      targets: this.targetsController.targets.slice()
+      targets: this.targetsController.targets.slice(),
+      stats: {
+        hit: {
+          value: this.state.stats.hit.value + 1,
+          ...this.state.stats.hit
+        },
+        active: {
+          value: this.targetsController.targets.length,
+          ...this.state.stats.active
+        },
+        ...this.state.stats
+      }
     });
   }
 
