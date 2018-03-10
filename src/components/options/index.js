@@ -1,5 +1,5 @@
 import React from 'react';
-import Option from './option';
+import Option from './option';// eslint-disable-line no-shadow
 import './styles.scss';
 
 export default ({ options }) => (

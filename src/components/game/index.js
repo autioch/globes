@@ -18,7 +18,12 @@ export default ({ store }) => {
         {<Stats stats={stats} />}
         {<Timer duration={duration} />}
       </div>
-      {<Targets targets={targets} onClick={targetHit} width={dimensions.targetsWidth} height={dimensions.targetsHeight}/>}
+      {<Targets
+        targets={targets}
+        onClick={targetHit}
+        width={dimensions.targetsWidth}
+        height={dimensions.targetsHeight}
+      />}
       {isPaused ? <Cover /> : ''}
       {isOver ? <Records records={records} headers={recordProps} onClick={gamePrepare} /> : ''}
       {message ? <Message message={message} onClick={gameStart}/> : ''}
