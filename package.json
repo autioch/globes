@@ -102,5 +102,6 @@
   },
   "devDependencies": {
     "babel-plugin-transform-decorators": "^6.24.1"
-  }
+  },
+  "homepage": "https://autioch.github.io/globes/"
 }
