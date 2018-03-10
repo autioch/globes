@@ -11,7 +11,7 @@ export default {
   message: undefined,
   options: {},
   records: undefined,
-  recordsHeaders: undefined,
+  recordProps: undefined,
   stats: clone(statsConfig),
   targets: [],
   targetAddInterval: 1500,

@@ -15,8 +15,8 @@ function randomColor() {
 }
 
 function randomPosition({ width, height }, size) {
-  const x = random(width, size);
-  const y = random(height, size);
+  const x = random(width - size, size);
+  const y = random(height - size, size);
 
   return {
     x,

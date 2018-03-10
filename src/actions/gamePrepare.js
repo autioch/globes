@@ -1,14 +1,25 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-undefined */
+import statsConfig from '../store/statsConfig';
 
-export default function gamePrepare(state, { callback }) {
+const DEFAULT_LIFE = 5;
+
+const clone = (obj) => JSON.parse(JSON.stringify(obj));
+
+export default function gamePrepare() {
+  const newStats = clone(statsConfig);
+
+  newStats.life.value = DEFAULT_LIFE;
+
   return {
-    records: undefined,
+    isStarted: false,
+    isPaused: false,
+    isOver: false,
+    stats: newStats,
+    targets: [],
     message: {
       title: 'Globes!',
-      content: 'Hit the globes, avoid the skulls!',
-      follow: 'Click to continue...',
-      onClick: callback
+      content: 'Hit the globes before they gray out',
+      follow: 'Click to continue...'
     }
   };
 }

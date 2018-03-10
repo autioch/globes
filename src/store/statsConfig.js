@@ -20,7 +20,7 @@ export default {
   life: {
     title: 'Lives',
     icon: 'LIVES',
-    value: 0,
+    value: 1,
     isLimited: false
   },
   speed: {

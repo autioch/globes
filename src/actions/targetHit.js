@@ -1,11 +1,11 @@
-export default function targetHit(state, { id }) {
-  const targets = state.filter((target) => target.id !== id);
+export default function targetHit({ targets, stats }, id) {
+  const newTargets = targets.filter((target) => target.id !== id);
 
   return {
-    targets,
+    targets: newTargets,
     stats: {
       hit: {
-        value: state.stats.hit.value + 1
+        value: stats.hit.value + 1
       },
       active: {
         value: targets.length
