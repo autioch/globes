@@ -3,20 +3,18 @@ import { Cover, Message, Options, Records, Stats, Targets } from '../index';
 
 import './styles.css';
 
-export default ({
-  paused,
-  message,
-  options,
-  records, recordsHeaders, recordsClose,
-  stats,
-  targets, targetHit, dimensions
-}) => (
-  <div className="qb-game">
-    {<Targets targets={targets} onClick={targetHit} dimensions={dimensions}/>}
-    {<Options options={options} />}
-    {<Stats stats={stats} />}
-    {paused ? <Cover /> : ''}
-    {records ? <Records records={records} headers={recordsHeaders} onClick={recordsClose} /> : ''}
-    {message ? <Message message={message} /> : ''}
-  </div>
-);
+export default ({ store }) => {
+  const { targets, dimensions, options, stats, isPaused, isOver, records, recordsHeaders, message } = store.getState();
+  const { targetHit, gamePrepare } = store;
+
+  return (
+    <div className="qb-game">
+      {<Targets targets={targets} onClick={targetHit} dimensions={dimensions}/>}
+      {<Options options={options} />}
+      {<Stats stats={stats} />}
+      {isPaused ? <Cover /> : ''}
+      {isOver ? <Records records={records} headers={recordsHeaders} onClick={gamePrepare} /> : ''}
+      {message ? <Message message={message} /> : ''}
+    </div>
+  );
+};

@@ -1,4 +1,3 @@
-/* eslint-disable id-length */
 import React from 'react';
 
 export default ({ onClick, target: { id, size, color, position } }) => (

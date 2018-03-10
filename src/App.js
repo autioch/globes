@@ -1,39 +1,24 @@
-/* eslint-disable no-console */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-undefined */
-/* eslint-disable no-magic-numbers */
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import App from './App';
+//
+// import './index.scss';
+//
+// ReactDOM.render(<App />, document.getElementById('root'));
+
 import React, { Component } from 'react';
-import { Game, RecordsController, TargetsController } from './components';
+import { Cover, Message, Options, Records, Stats, Targets } from './components';
 import autobind from 'autobind-decorator';
 import './App.css';
-import statsConfig from './components/stats/config';
-
-const clone = (obj) => JSON.parse(JSON.stringify(obj));
-
-const DEFAULT_LIFE = 5;
+import createStore from './store';
+import actions from './actions';
+import initialState from './store/initialState';
 
 export default class App extends Component {
-  state = {
-    pause: false,
-    message: undefined,
-    options: {},
-    records: undefined,
-    recordsHeaders: undefined,
-    stats: clone(statsConfig),
-    targets: [],
-    targetAddInterval: 1500,
-    dimensions: {
-      width: 400,
-      height: 400
-    },
-    lastRun: Date.now()
-  }
-
   constructor(props) {
     super(props);
-    this.recordsController = new RecordsController({});
-    this.targetsController = new TargetsController({});
-    this.recordsController.reset();
+    this.store = createStore(initialState, actions, (state) => this.setState(state));
+    this.state = this.store.getState();
   }
 
   componentDidMount() {
@@ -42,54 +27,20 @@ export default class App extends Component {
 
   @autobind
   gamePrepare() {
-    this.setState({
-      records: undefined,
-      message: {
-        title: 'Globes!',
-        content: 'Hit the globes, avoid the skulls!',
-        follow: 'Click to continue...',
-        onClick: this.gameStart
-      }
-    });
+    this.store.gamePrepare(this.gameStart);
   }
 
   @autobind
   gameStart() {
-    const newStats = clone(statsConfig);
-
-    newStats.life.value = DEFAULT_LIFE;
-
-    this.setState({
-      message: undefined,
-      stats: newStats
-    });
+    this.store.gameStart();
     this.gameLoopTimeout = setTimeout(this.gameLoop, 10);
     setTimeout(this.targetAdd, 10);
   }
 
   @autobind
   gameLoop() {
-    const runTime = Date.now();
-    const { targets, lastRun, dimensions } = this.state;
-    const timeDiff = runTime - lastRun;
-
-    this.targetsController.age(timeDiff, dimensions);
-
-    const deadCount = targets.filter((entity) => !!entity.dead).length;
-    const life = this.state.stats.life.value - deadCount;
-
-    this.setState({
-      lastRun: runTime,
-      targets: targets.filter((entity) => !entity.dead),
-      stats: {
-        life: {
-          value: life,
-          ...this.state.stats.life
-        },
-        ...this.state.stats
-      }
-    });
-    if (life < 1) {
+    this.store.gameLoop();
+    if (this.store.getState().stats.life.value < 1) {
       this.gameOver();
     } else {
       this.gameLoopTimeout = setTimeout(this.gameLoop, 10);
@@ -100,61 +51,27 @@ export default class App extends Component {
   gameOver() {
     clearTimeout(this.targetAddTimeout);
     clearTimeout(this.gameLoopTimeout);
-    this.recordsController.add([10]);
-    this.setState({
-      paused: true,
-      records: this.recordsController.records,
-      recordsHeaders: ['points']
-    });
+    this.store.gameOver();
   }
 
   @autobind
   targetAdd() {
-    this.targetsController.add(this.state.dimensions);
-    this.setState({
-      targets: this.targetsController.targets.slice(),
-      stats: {
-        active: {
-          value: this.targetsController.targets.length,
-          ...this.state.stats.active
-        },
-        ...this.state.stats
-      }
-    });
+    this.store.targetAdd();
     this.targetAddTimeout = setTimeout(this.targetAdd, this.state.targetAddInterval);
   }
 
-  @autobind
-  targetHit(id) {
-    this.targetsController.hit(id);
-    this.setState({
-      targets: this.targetsController.targets.slice(),
-      stats: {
-        hit: {
-          value: this.state.stats.hit.value + 1,
-          ...this.state.stats.hit
-        },
-        active: {
-          value: this.targetsController.targets.length,
-          ...this.state.stats.active
-        },
-        ...this.state.stats
-      }
-    });
-  }
-
   render() {
-    const { dimensions, paused, message, options, records, recordsHeaders, stats, targets } = this.state;
+    const { targets, dimensions, options, stats, isPaused, isOver, records, recordsHeaders, message } = this.state;
 
     return (
-      <Game
-        paused={paused}
-        message={message}
-        options={options}
-        records={records} recordsHeaders={recordsHeaders} recordsClose={this.gamePrepare}
-        stats={stats}
-        targets={targets} targetHit={this.targetHit} dimensions={dimensions}
-      />
+      <div className="qb-game">
+        {<Targets targets={targets} onClick={this.store.targetHit} dimensions={dimensions}/>}
+        {<Options options={options} />}
+        {<Stats stats={stats} />}
+        {isPaused ? <Cover /> : ''}
+        {isOver ? <Records records={records} headers={recordsHeaders} onClick={this.gamePrepare} /> : ''}
+        {message ? <Message message={message} /> : ''}
+      </div>
     );
   }
 }
