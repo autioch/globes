@@ -5,14 +5,11 @@ export default function targetHit(state, { id }) {
     targets,
     stats: {
       hit: {
-        value: state.stats.hit.value + 1,
-        ...state.stats.hit
+        value: state.stats.hit.value + 1
       },
       active: {
-        value: targets.length,
-        ...state.stats.active
-      },
-      ...state.stats
+        value: targets.length
+      }
     }
   };
 }

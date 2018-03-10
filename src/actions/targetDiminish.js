@@ -1,6 +1,14 @@
 /* eslint-disable id-length */
-/* eslint-disable no-magic-numbers */
 const SPEED = 0.01;
+const GREY = 200;
+
+const TIMED_OUT = {
+  R: GREY,
+  G: GREY,
+  B: GREY
+};
+
+const clone = (obj) => JSON.parse(JSON.stringify(obj));
 
 function lerp(fromColor, toColor, amount) {
   function ajust(start, end) {
@@ -16,20 +24,13 @@ function lerp(fromColor, toColor, amount) {
   };
 }
 
-const TIMED_OUT = {
-  R: 200,
-  G: 200,
-  B: 200
-};
-
-const clone = (obj) => JSON.parse(JSON.stringify(obj));
-
-export default function targetDiminish({ targets, dimensions, lastRun, stats }) {
+export default function targetDiminish({ targets, lastRun }) {
   const currentRun = Date.now();
   const timeDiff = currentRun - lastRun;
-  const previousCount = targets.length;
-  const newTargets = targets
-    .map((target) => {
+
+  return {
+    lastRun: currentRun,
+    targets: targets.map((target) => {
       target.remaining -= timeDiff;
       target.passed += timeDiff;
       target.timedOut = target.remaining < 1;
@@ -41,24 +42,7 @@ export default function targetDiminish({ targets, dimensions, lastRun, stats }) 
         target.color = lerp(target.originalColor, TIMED_OUT, target.passed / target.duration);
       }
 
-      return {
-        ...target
-      };
+      return target;
     })
-    .filter((target) => (target.position.currentY - target.size) >= dimensions.height);
-
-  const life = stats.live.value - (previousCount - newTargets.length);
-
-  return {
-    isOver: life < 1,
-    lastRun: currentRun,
-    targets: newTargets,
-    stats: {
-      life: {
-        value: life,
-        ...stats.life
-      },
-      ...stats
-    }
   };
 }

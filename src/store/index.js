@@ -1,6 +1,3 @@
-/* eslint-disable no-undefined */
-/* eslint-disable no-magic-numbers */
-
 function mergeState(state, stateChange) {
   return Object.assign(state, stateChange);
 }
