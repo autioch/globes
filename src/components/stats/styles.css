@@ -1,0 +1,11 @@
+.qb-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .5em 0;
+}
+
+.qb-stat__text {
+  margin: .5em 0;
+  font-size: 1.2em;
+}

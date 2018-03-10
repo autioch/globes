@@ -10,4 +10,4 @@
     - moving globes
     - mist of war - darken regions slowly until clicked again
     - 3d - rotate the scene
-    
+    - changing background / theme

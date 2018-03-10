@@ -2,7 +2,7 @@
 /* eslint-disable no-magic-numbers */
 import statsConfig from './statsConfig';
 
-const SIDEBAR_WIDTH = 200;
+const SIDEBAR_WIDTH = 10;
 const clone = (obj) => JSON.parse(JSON.stringify(obj));
 
 export default {

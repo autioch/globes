@@ -1,4 +1,4 @@
-.qb-message__wrapper {
+.qb-records__wrapper {
   position: absolute;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@
   background: rgba(255,255,255, .5);
 }
 
-.qb-message {
+.qb-records {
   cursor: pointer;
   background-color: #87CEFA;
   border: outset .25em #00BFFF;
@@ -19,7 +19,7 @@
   border-radius: .25em;
 }
 
-.qb-message::after {
+.qb-records::after {
   content: '';
   position: absolute;
   top: 0;
@@ -29,17 +29,6 @@
   border: inset .25em #00BFFF;
 }
 
-.qb-message__title {
-  text-align: center;
-  font-size: 1.2em;
-}
-
-.qb-message__content {
-  margin-top: 1em;
-}
-
-.qb-message__follow {
-  font-style: italic;
-  text-align: center;
-  margin-top: 2em;
+.qb-records__title {
+  margin-bottom: 1em;
 }

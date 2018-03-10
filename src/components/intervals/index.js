@@ -33,6 +33,6 @@ export default class Intervals extends Component {
   }
 
   render() { // eslint-disable-line class-methods-use-this
-    return (<div>INTERVALS ACTIVE</div>);
+    return (<div></div>);
   }
 }

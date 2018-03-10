@@ -1,11 +1,40 @@
 .qb-targets {
-  background-color: #f8f8f8;
   position: relative;
   overflow: hidden;
+  background: url('./004.jpg');
+  background-size: cover;
 }
 
 .qb-target {
   border-radius: 50%;
-  box-shadow: 1px 1px 1px #aaa;
+  /* box-shadow: .1em .1em .25em #aaa; */
   position: absolute;
+}
+
+.qb-target::before {
+  content: "";
+  position: absolute;
+  top: 1%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 0px, #ffffff, rgba(255, 255, 255, 0) 58%);
+  -webkit-filter: blur(5px);
+  transform: rotate(-15deg);
+  z-index: 2;
+}
+
+.qb-target::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 100%, rgba(0, 0, 0, .1), rgba(255, 255, 255, 0) 58%);
+  -webkit-filter: blur(5px);
+  transform: rotate(-15deg);
+  z-index: 1;
 }

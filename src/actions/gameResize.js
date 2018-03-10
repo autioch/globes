@@ -1,4 +1,4 @@
-const SIDEBAR_WIDTH = 200;
+const SIDEBAR_WIDTH = 100;
 
 export default function gameResize() {
   return {
