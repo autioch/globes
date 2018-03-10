@@ -7,9 +7,10 @@ export default ({ records, headers, onClick }) => (
   <div className="qb-records__wrapper">
     <div className="qb-records" onClick={onClick}>
       <div className="qb-records__title">Game over!</div>
-      <table>
+      <table className="qb-records__table">
         <thead>
           <tr>
+            <th>No</th>
             {headers.map((cell, index) => <th key={index}>{cell}</th>)}
           </tr>
         </thead>

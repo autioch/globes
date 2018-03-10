@@ -17,6 +17,7 @@
   padding: 1em 3em;
   position: relative;
   border-radius: .25em;
+  counter-reset: records-counter;
 }
 
 .qb-records::after {
@@ -27,8 +28,21 @@
   right: 0;
   bottom: 0;
   border: inset .25em #00BFFF;
+  pointer-events: none;
 }
 
 .qb-records__title {
   margin-bottom: 1em;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.qb-records-row__counter::after {
+  counter-increment: records-counter;
+  content: counter(records-counter);
+}
+
+.qb-records__table th,
+.qb-records__table td {
+  padding: .25em .5em;
 }

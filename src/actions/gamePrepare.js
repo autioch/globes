@@ -1,7 +1,7 @@
 /* eslint-disable no-undefined */
 import statsConfig from '../store/statsConfig';
 
-const DEFAULT_LIFE = 500;
+const DEFAULT_LIFE = 10;
 
 const clone = (obj) => JSON.parse(JSON.stringify(obj));
 

@@ -1,4 +1,14 @@
+function calculatePoints({ size, remaining }) {
+  return Math.ceil(remaining / size);
+}
+
 export default function targetHit({ targets, stats }, id) {
+  const foundTarget = targets.find((target) => target.id === id);
+
+  if (!foundTarget) {
+    return {};
+  }
+
   const newTargets = targets.filter((target) => target.id !== id);
 
   return {
@@ -9,6 +19,9 @@ export default function targetHit({ targets, stats }, id) {
       },
       active: {
         value: targets.length
+      },
+      points: {
+        value: stats.points.value + calculatePoints(foundTarget)
       }
     }
   };
