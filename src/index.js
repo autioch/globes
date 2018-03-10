@@ -1,17 +1,10 @@
-/* eslint-disable no-use-before-define */
-import React from 'react';
-import { render } from 'react-dom';
 import { Game } from './components';
 import actions from './actions';
-import createStore from './store';
 import initialState from './store/initialState';
+import setup from './setup';
 
-const rootEl = document.getElementById('root');
+const store = setup(initialState, actions, Game, document.getElementById('root'));
 
-const store = createStore(initialState, actions, renderGame).gamePrepare();
+store.gameResize().gamePrepare();
 
-function renderGame() {
-  render(<Game store={store}/>, rootEl);
-}
-
-renderGame();
+window.addEventListener('resize', store.gameResize);

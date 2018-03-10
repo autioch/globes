@@ -14,9 +14,9 @@ function randomColor() {
   };
 }
 
-function randomPosition({ width, height }, size) {
-  const x = random(width - size, size);
-  const y = random(height - size, size);
+function randomPosition({ targetsWidth, targetsHeight }, size) {
+  const x = random(targetsWidth - size, size);
+  const y = random(targetsHeight - size, size);
 
   return {
     x,

@@ -1,4 +1,3 @@
-import Clock from './clock';
 import Cover from './cover';
 import Game from './game';
 import Intervals from './intervals';
@@ -7,11 +6,11 @@ import Options from './options';
 import Records from './records';
 import Stats from './stats';
 import Targets from './targets';
+import Timer from './timer';
 
-export { Clock, Cover, Game, Intervals, Message, Options, Records, Stats, Targets };
+export { Cover, Game, Intervals, Message, Options, Records, Stats, Targets, Timer };
 
 export default {
-  Clock,
   Cover,
   Game,
   Intervals,
@@ -19,5 +18,6 @@ export default {
   Options,
   Records,
   Stats,
-  Targets
+  Targets,
+  Timer
 };

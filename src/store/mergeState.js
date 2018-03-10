@@ -8,6 +8,7 @@ function mergeState(state, change) {
     const value = change[key];
     const old = state[key];
 
+    /* TODO We should actually create new objects here, but make it smart. */
     state[key] = isObject(old) && isObject(value) ? mergeState(old, value) : value;
   }
 

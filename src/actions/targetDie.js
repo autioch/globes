@@ -1,5 +1,6 @@
 export default function targetDie({ targets, dimensions, stats }) {
-  const newTargets = targets.filter((target) => (target.position.currentY - target.size) <= dimensions.height);
+  const allowedTop = dimensions.targetsHeight;
+  const newTargets = targets.filter((target) => (target.position.currentY - target.size) <= allowedTop);
 
   return {
     targets: newTargets,

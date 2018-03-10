@@ -23,7 +23,7 @@ export default class Intervals extends Component {
   gameLoop() {
     const { store } = this.props;
 
-    store.targetDiminish().targetDie();
+    store.gameDuration().targetDiminish().targetDie();
 
     if (store.getState().stats.life.value < 1) {
       store.gameOver().recordAdd().recordShow();

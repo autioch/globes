@@ -2,6 +2,7 @@
 /* eslint-disable no-magic-numbers */
 import statsConfig from './statsConfig';
 
+const SIDEBAR_WIDTH = 200;
 const clone = (obj) => JSON.parse(JSON.stringify(obj));
 
 export default {
@@ -16,8 +17,10 @@ export default {
   targets: [],
   targetAddInterval: 1500,
   dimensions: {
-    width: 400,
-    height: 400
+    targetsHeight: window.innerHeight,
+    sidebarWidth: SIDEBAR_WIDTH,
+    targetsWidth: window.innerWidth - SIDEBAR_WIDTH
   },
+  duration: 0,
   lastRun: Date.now()
 };

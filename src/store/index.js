@@ -1,22 +1,13 @@
 import mergeState from './mergeState';
+import subscription from './subscription';
 
-export default function createStore(initialState, actions, callback) {
+export default function createStore(initialState, actions) {
   const state = initialState;
-  let notifyTimeout;
+  const store = {};
+  const { subscribe, notify } = subscription(store);
 
-  const store = {
-    getState: () => state
-  };
-
-  function notify() {
-    if (notifyTimeout) {
-      return;
-    }
-    notifyTimeout = setTimeout(() => {
-      notifyTimeout = null;
-      callback(store);
-    }, 1);
-  }
+  store.subscribe = subscribe;
+  store.getState = () => state;
 
   const wrapAction = (action) => (params) => {
     mergeState(state, action(state, params));

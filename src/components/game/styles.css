@@ -1,4 +1,16 @@
 .qb-game {
-  position: absolute;
-  border: solid .25em #0f0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.qb-game__sidebar {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
