@@ -1,0 +1,8 @@
+.qb-option {
+  cursor: pointer;
+
+  &.is-disabled {
+    pointer-events: none;
+    opacity: .5;
+  }
+}
