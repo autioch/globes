@@ -15,18 +15,18 @@ export default class Intervals extends Component {
 
   @autobind
   targetAdd() {
-    this.props.store.targetAdd();
+    this.props.actions.targetAdd();
     this.targetAddTimeout = setTimeout(this.targetAdd, 1000);
   }
 
   @autobind
   gameLoop() {
-    const { store } = this.props;
+    const { actions } = this.props;
 
-    store.gameDuration().targetDiminish().targetDie();
+    actions.gameDuration().targetDiminish().targetDie();
 
-    if (store.getState().stats.life.value < 1) {
-      store.gameOver().recordAdd().recordShow();
+    if (actions.getState().stats.life.value < 1) {
+      actions.gameOver().recordAdd().recordShow();
     } else {
       this.gameLoopTimeout = setTimeout(this.gameLoop, 10);
     }

@@ -1,6 +1,7 @@
 const isObject = (obj) => obj && obj.constructor === Object;
+const recreate = (obj) => Object.assign({}, obj);
 
-function mergeState(state, change) {
+export default function merge(state, change) {
   const props = Object.keys(change);
 
   for (let index = 0; index < props.length; index++) {
@@ -8,11 +9,8 @@ function mergeState(state, change) {
     const value = change[key];
     const old = state[key];
 
-    /* TODO We should actually create new objects here, but make it smart. */
-    state[key] = isObject(old) && isObject(value) ? mergeState(old, value) : value;
+    state[key] = isObject(old) && isObject(value) ? recreate(merge(old, value)) : value;
   }
 
   return state;
 }
-
-export default mergeState;

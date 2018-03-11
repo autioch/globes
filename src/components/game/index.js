@@ -3,17 +3,17 @@ import { Cover, Message, Options, Records, Stats, Targets, Intervals, Timer } fr
 
 import './styles.css';
 
-export default ({ store }) => {
-  const { targets, dimensions, options, stats, records, recordProps, message, duration } = store.getState();
-  const { isStarted, isPaused, isOver } = store.getState();
-  const { targetHit, gamePrepare, gameStart } = store;
+export default ({ state, actions }) => {
+  const { targets, dimensions, options, stats, records, recordProps, message, duration } = state;
+  const { isStarted, isPaused, isOver } = state;
+  const { targetHit, gamePrepare, gameStart } = actions;
 
   return (
     <div className="qb-game">
       <div className="qb-game__sidebar" style={{
         width: dimensions.sidebarWidth
       }}>
-        {isStarted && !isPaused ? <Intervals store={store}/> : ''}
+        {isStarted && !isPaused ? <Intervals actions={actions}/> : ''}
         {<Options options={options} />}
         {<Stats stats={stats} />}
         {<Timer duration={duration} />}

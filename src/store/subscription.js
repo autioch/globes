@@ -3,7 +3,7 @@ export default function subscription(store) {
   const listeners = [];
 
   function notifyListener(listener) {
-    listener(store);
+    listener(store.getState(), store);
   }
 
   function notifyListeners() {

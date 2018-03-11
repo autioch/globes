@@ -11,7 +11,7 @@
   position: absolute;
 }
 
-.qb-target::before {
+/* .qb-target::before {
   content: "";
   position: absolute;
   top: 1%;
@@ -37,4 +37,4 @@
   -webkit-filter: blur(5px);
   transform: rotate(-15deg);
   z-index: 1;
-}
+} */

@@ -9,6 +9,7 @@ import messageShow from './messageShow';
 import recordAdd from './recordAdd';
 import recordHide from './recordHide';
 import recordShow from './recordShow';
+import reset from './reset';
 import targetAdd from './targetAdd';
 import targetDie from './targetDie';
 import targetDiminish from './targetDiminish';
@@ -26,6 +27,7 @@ const actions = {
   recordAdd,
   recordHide,
   recordShow,
+  reset,
   targetAdd,
   targetDie,
   targetDiminish,
