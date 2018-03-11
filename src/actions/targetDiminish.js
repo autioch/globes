@@ -1,3 +1,4 @@
+import { clone } from '../core';
 /* eslint-disable id-length */
 const SPEED = 0.01;
 const GREY = 200;
@@ -7,8 +8,6 @@ const TIMED_OUT = {
   G: GREY,
   B: GREY
 };
-
-const clone = (obj) => JSON.parse(JSON.stringify(obj));
 
 function lerp(fromColor, toColor, amount) {
   function ajust(start, end) {

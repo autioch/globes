@@ -51,6 +51,13 @@ export default function reset() {
       sidebarWidth: SIDEBAR_WIDTH,
       targetsWidth: window.innerWidth - SIDEBAR_WIDTH
     },
+    messages: {
+      welcome: {
+        title: 'Globes!',
+        content: 'Hit the globes before they gray out',
+        follow: 'Click to continue...'
+      }
+    },
     duration: 0,
     lastRun: Date.now()
   };

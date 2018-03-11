@@ -1,6 +1,5 @@
-import merge from './merge';
+import { merge, clone } from './utils';
 import subscription from './subscription';
-const clone = (obj) => JSON.parse(JSON.stringify(obj));
 
 export default function createStore(actions, initialState = {}) {
   const state = clone(initialState);

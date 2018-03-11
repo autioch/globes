@@ -1,12 +1,15 @@
 import gameDuration from './gameDuration';
 import gameOver from './gameOver';
-import gamePause from './gamePause';
+
+// import gamePause from './gamePause';
 import gamePrepare from './gamePrepare';
 import gameResize from './gameResize';
 import gameStart from './gameStart';
+
 import messageHide from './messageHide';
 import messageShow from './messageShow';
 import recordAdd from './recordAdd';
+
 import recordHide from './recordHide';
 import recordShow from './recordShow';
 import reset from './reset';
@@ -17,8 +20,10 @@ import targetHit from './targetHit';
 
 const actions = {
   gameDuration,
+
   gameOver,
-  gamePause,
+
+  // gamePause,
   gamePrepare,
   gameResize,
   gameStart,

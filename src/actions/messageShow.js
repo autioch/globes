@@ -1,5 +1,5 @@
-export default function messageShow(state, { message }) { // eslint-disable-line no-unused-vars
+export default function messageShow({ messages }, messageId) { // eslint-disable-line no-unused-vars
   return {
-    message
+    message: messages[messageId]
   };
 }

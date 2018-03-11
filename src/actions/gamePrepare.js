@@ -12,11 +12,6 @@ export default function gamePrepare({ stats }) {
     isPaused: false,
     isOver: false,
     stats,
-    targets: [],
-    message: {
-      title: 'Globes!',
-      content: 'Hit the globes before they gray out',
-      follow: 'Click to continue...'
-    }
+    targets: []
   };
 }
