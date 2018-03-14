@@ -1,11 +1,11 @@
 import React from 'react';
-import { Cover, Message, Options, Records, Stats, Targets, Timer } from '../index';
+import { Message, Options, Records, Stats, Targets, Timer } from '../index';
 
 import './styles.css';
 
-export default ({ state, actions }) => {
-  const { targets, dimensions, options, stats, records, recordProps, message, duration, isPaused } = state;
-  const { targetHit, start, restart } = actions;
+export default ({ state, store }) => {
+  const { targets, dimensions, options, stats, records, recordProps, message, duration } = state;
+  const { targetHit, start, restart } = store;
 
   return (
     <div className="qb-game">
@@ -22,7 +22,6 @@ export default ({ state, actions }) => {
         width={dimensions.targetsWidth}
         height={dimensions.targetsHeight}
       />}
-      {isPaused ? <Cover /> : ''}
       {records ? <Records records={records} headers={recordProps} onClick={restart} /> : ''}
       {message ? <Message message={message} onClick={start}/> : ''}
     </div>

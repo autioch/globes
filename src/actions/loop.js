@@ -1,7 +1,7 @@
 export default function loop(state, param, store) {
   store
     .loopStop()
-    .gameDuration()
+    .durationUpdate()
     .targetDiminish()
     .targetDie();
 

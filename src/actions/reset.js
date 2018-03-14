@@ -6,7 +6,6 @@ const TARGET_ADD_INTERVAL = 1500;
 export default function reset() {
   return {
     isStarted: false,
-    isPaused: false,
     isOver: false,
     message: undefined,
     options: {},

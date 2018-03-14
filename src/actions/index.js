@@ -5,7 +5,6 @@ import { targetAdd, targetAddStop, targetDie, targetDiminish, targetHit } from '
 
 import gameDuration from './gameDuration';
 import gameOver from './gameOver';
-import gamePause from './gamePause';
 import gamePrepare from './gamePrepare';
 import gameStart from './gameStart';
 
@@ -19,7 +18,6 @@ import start from './start';
 export default {
   gameDuration,
   gameOver,
-  gamePause,
   gamePrepare,
   environmentResize,
   gameStart,

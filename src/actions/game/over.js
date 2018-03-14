@@ -1,7 +1,6 @@
-export default function gameOver(state, param, store) {
+export default function gameOver() {
   return {
     isOver: true,
-    isPaused: false,
     isStarted: false
   };
 }
