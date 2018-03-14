@@ -10,9 +10,12 @@ export default function createStore(actions, initialState = {}) {
   store.getState = () => state;
 
   const wireAction = (action) => (params) => {
+    /* TODO Pass store as third argument, so we can call action within action. 
+     * These composite actions will all call notify, but it's debounced. */
     merge(state, action(state, params));
     notify();
 
+    /* TODO Since we don't need to "chain" actions (we can compose them), rethink what should be returned. */
     return store;
   };
 
