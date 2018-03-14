@@ -1,4 +1,4 @@
-import { clone } from '../core';
+import { clone } from '../../core';
 /* eslint-disable id-length */
 const SPEED = 0.01;
 const GREY = 200;

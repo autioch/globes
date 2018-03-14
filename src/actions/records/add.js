@@ -1,5 +1,5 @@
 const MAX_RECORDS = 5;
-const STOREAGE_KEY = 'globes';
+const STORAGE_KEY = 'globes';
 const ORDER_INDEX = 0;
 
 const SIXTY = 60;
@@ -16,14 +16,12 @@ function format(milliseconds) {
 }
 
 export default function addRecord({ stats, duration }) {
-  const loadedRecords = JSON.parse(localStorage.getItem(STOREAGE_KEY) || '[]');
+  const loadedRecords = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
   const newRecord = [stats.points.value, stats.hit.value, stats.active.value, format(duration)];
   const records = loadedRecords.concat([newRecord]);
 
   records.sort((recordA, recordB) => recordB[ORDER_INDEX] - recordA[ORDER_INDEX]);
   const trimmedRecords = records.slice(0, MAX_RECORDS);
 
-  localStorage.setItem(STOREAGE_KEY, JSON.stringify(trimmedRecords));
-
-  return {};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(trimmedRecords));
 }

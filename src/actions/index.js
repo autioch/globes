@@ -1,40 +1,40 @@
+import { durationStart, durationUpdate } from './duration';
 import { environmentResize } from './environment';
+import { gameOver, gamePrepare, gameStart } from './game';
 import { messageHide, messageShow } from './message';
 import { recordAdd, recordHide, recordShow } from './records';
-import { targetAdd, targetAddStop, targetDie, targetDiminish, targetHit } from './target';
-
-import gameDuration from './gameDuration';
-import gameOver from './gameOver';
-import gamePrepare from './gamePrepare';
-import gameStart from './gameStart';
+import { statsReset } from './stats';
+import { targetAdd, targetAddStop, targetDie, targetDiminish, targetHit, targetReset, targetStart } from './target';
 
 import loop from './loop';
-import loopStop from './loopStop';
-import over from './over';
-import reset from './reset';
-import restart from './restart';
+import round from './round';
+import prepare from './prepare';
 import start from './start';
+import over from './over';
 
 export default {
-  gameDuration,
-  gameOver,
-  gamePrepare,
+  durationStart, // start
+  durationUpdate, // round
   environmentResize,
-  gameStart,
+  gameOver, // over
+  gamePrepare, // prepare
+  gameStart, // start
   loop,
-  loopStop,
-  messageHide,
-  messageShow,
+  messageHide, // start
+  messageShow, // prepare
   over,
-  recordAdd,
-  recordHide,
-  recordShow,
-  reset,
+  prepare,
+  round,
+  recordAdd, // over
+  recordHide, // prepare
+  recordShow, // over
   start,
-  restart,
-  targetAdd,
-  targetAddStop,
-  targetDie,
-  targetDiminish,
-  targetHit
+  statsReset, // prepare
+  targetAdd, // start
+  targetAddStop, // over
+  targetDie, // round
+  targetDiminish, // round
+  targetHit,
+  targetReset, // prepare
+  targetStart // start
 };

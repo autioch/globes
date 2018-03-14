@@ -7,6 +7,7 @@
 
 .qb-target {
   border-radius: 50%;
+  cursor: crosshair;
   /* box-shadow: .1em .1em .25em #aaa; */
   position: absolute;
 }

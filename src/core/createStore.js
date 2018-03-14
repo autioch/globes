@@ -10,7 +10,7 @@ export default function createStore(actions, initialState = {}) {
   store.getState = () => state;
 
   const wireAction = (action) => (data) => { // eslint-disable-line id-blacklist
-    merge(state, action(state, data, store));
+    merge(state, action(state, data, store) || {});
     notify();
 
     /* Return store so we can chain actions, as an alternative to composition. */

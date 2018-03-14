@@ -5,7 +5,7 @@ import './styles.css';
 
 export default ({ state, store }) => {
   const { targets, dimensions, options, stats, records, recordProps, message, duration } = state;
-  const { targetHit, start, restart } = store;
+  const { targetHit, start, prepare } = store;
 
   return (
     <div className="qb-game">
@@ -22,7 +22,7 @@ export default ({ state, store }) => {
         width={dimensions.targetsWidth}
         height={dimensions.targetsHeight}
       />}
-      {records ? <Records records={records} headers={recordProps} onClick={restart} /> : ''}
+      {records ? <Records records={records} headers={recordProps} onClick={prepare} /> : ''}
       {message ? <Message message={message} onClick={start}/> : ''}
     </div>
   );

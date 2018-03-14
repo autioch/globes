@@ -1,5 +1,5 @@
-import recordsAdd from './add';
-import recordsHide from './hide';
-import recordsShow from './show';
+import recordAdd from './add';
+import recordHide from './hide';
+import recordShow from './show';
 
-export { recordsAdd, recordsHide, recordsShow };
+export { recordAdd, recordHide, recordShow };

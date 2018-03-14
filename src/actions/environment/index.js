@@ -1,3 +1,3 @@
-import resize from './resize';
+import environmentResize from './resize';
 
-export { resize };
+export { environmentResize };

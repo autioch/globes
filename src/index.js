@@ -1,10 +1,10 @@
 import { Game } from './components';
 import actions from './actions';
 import { app } from './core';
+import initialState from './initialState';
 
-const store = app(actions, {}, Game, document.getElementById('root'));
+const store = app(actions, initialState, Game, document.getElementById('root'));
 
-store.reset().gameResize().gamePrepare()
-  .messageShow('welcome');
+store.environmentResize().prepare();
 
-window.addEventListener('resize', store.gameResize);
+window.addEventListener('resize', store.environmentResize);

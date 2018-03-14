@@ -1,5 +1,4 @@
-import durationReset from './reset';
-import durationUpdate from './update';
 import durationStart from './start';
+import durationUpdate from './update';
 
-export { durationReset, durationUpdate, durationStart };
+export { durationUpdate, durationStart };
