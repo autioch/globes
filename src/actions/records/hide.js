@@ -1,6 +1,6 @@
 /* eslint-disable no-undefined */
 
-export default function recordHide() {
+export default function hideRecords() {
   return {
     records: undefined,
     recordProps: undefined

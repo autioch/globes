@@ -24,10 +24,4 @@ function merge(state, change) {
   return state;
 }
 
-function chain(...actions) {
-  return function chained() {
-    actions.forEach((action) => action());
-  };
-}
-
-export { isObject, recreate, clone, merge, chain };
+export { isObject, recreate, clone, merge };

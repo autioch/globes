@@ -1,42 +1,42 @@
+import { environmentResize } from './environment';
+import { messageHide, messageShow } from './message';
+import { recordAdd, recordHide, recordShow } from './records';
+import { targetAdd, targetAddStop, targetDie, targetDiminish, targetHit } from './target';
+
 import gameDuration from './gameDuration';
 import gameOver from './gameOver';
-
-// import gamePause from './gamePause';
+import gamePause from './gamePause';
 import gamePrepare from './gamePrepare';
-import gameResize from './gameResize';
 import gameStart from './gameStart';
 
-import messageHide from './messageHide';
-import messageShow from './messageShow';
-import recordAdd from './recordAdd';
-
-import recordHide from './recordHide';
-import recordShow from './recordShow';
+import loop from './loop';
+import loopStop from './loopStop';
+import over from './over';
 import reset from './reset';
-import targetAdd from './targetAdd';
-import targetDie from './targetDie';
-import targetDiminish from './targetDiminish';
-import targetHit from './targetHit';
+import restart from './restart';
+import start from './start';
 
-const actions = {
+export default {
   gameDuration,
-
   gameOver,
-
-  // gamePause,
+  gamePause,
   gamePrepare,
-  gameResize,
+  environmentResize,
   gameStart,
+  loop,
+  loopStop,
   messageHide,
   messageShow,
+  over,
   recordAdd,
   recordHide,
   recordShow,
   reset,
+  start,
+  restart,
   targetAdd,
+  targetAddStop,
   targetDie,
   targetDiminish,
   targetHit
 };
-
-export default actions;

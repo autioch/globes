@@ -1,4 +1,4 @@
-export default function gameOver() {
+export default function gameOver(state, param, store) {
   return {
     isOver: true,
     isPaused: false,

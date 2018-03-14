@@ -46,8 +46,10 @@ function generateTarget({ dimensions }) {
   };
 }
 
-export default function targetAdd(state) {
+export default function targetAdd(state, param, store) {
   const targets = state.targets.concat(generateTarget(state));
+
+  store.targetAddStop();
 
   return {
     targets,
@@ -55,6 +57,7 @@ export default function targetAdd(state) {
       active: {
         value: targets.length
       }
-    }
+    },
+    targetAddTimeout: setTimeout(store.targetAdd, 1000)
   };
 }

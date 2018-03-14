@@ -9,13 +9,11 @@ export default function createStore(actions, initialState = {}) {
   store.subscribe = subscribe;
   store.getState = () => state;
 
-  const wireAction = (action) => (params) => {
-    /* TODO Pass store as third argument, so we can call action within action. 
-     * These composite actions will all call notify, but it's debounced. */
-    merge(state, action(state, params));
+  const wireAction = (action) => (data) => { // eslint-disable-line id-blacklist
+    merge(state, action(state, data, store));
     notify();
 
-    /* TODO Since we don't need to "chain" actions (we can compose them), rethink what should be returned. */
+    /* Return store so we can chain actions, as an alternative to composition. */
     return store;
   };
 

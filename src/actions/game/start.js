@@ -1,7 +1,8 @@
 export default function gameStart() {
   return {
     isStarted: true,
-    message: undefined, // eslint-disable-line no-undefined
+    isPaused: false,
+    isOver: false,
     lastRun: Date.now(),
     startTime: Date.now(),
     duration: 0

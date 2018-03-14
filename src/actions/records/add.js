@@ -15,7 +15,7 @@ function format(milliseconds) {
   return `${minutes}${seconds}s`;
 }
 
-export default function recordAdd({ stats, duration }) {
+export default function addRecord({ stats, duration }) {
   const loadedRecords = JSON.parse(localStorage.getItem(STOREAGE_KEY) || '[]');
   const newRecord = [stats.points.value, stats.hit.value, stats.active.value, format(duration)];
   const records = loadedRecords.concat([newRecord]);
